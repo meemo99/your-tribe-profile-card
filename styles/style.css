@@ -1,176 +1,112 @@
-* {
-  box-sizing: border-box;
-}
-
-html:has(.profile-card-example) {
+body {
+  width: 100%;
   height: 100vh;
-}
-
-body:has(.profile-card-example) {
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 100vh;
-  font-family: open sans;
-  color: #10214e;
+  perspective: 1200px;
+  background: #ccc;
+}
+.instrument-serif-regular {
+  font-family: "Instrument Serif", serif;
+  font-weight: 400;
+  font-style: normal;
 }
 
-article.profile-card-example {
+.instrument-serif-regular-italic {
+  font-family: "Instrument Serif", serif;
+  font-weight: 400;
+  font-style: italic;
+}
+
+
+h1{
+  color: rgb(216, 212, 201);
+  writing-mode:vertical-lr;
+}
+.profile-card-img {
+  max-width: 40%;
+      height: auto;
+  display: flex;
+  justify-content: left;
+  align-items: left;
+}
+.book {
+  transform-style: preserve-3d;
   position: relative;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: flex-end;
-  width: 50vw;
-  max-width: 25em;
-  min-width: 20em;
-  border-radius: 1rem;
-  background: #E9F5DB;
-  background: linear-gradient(0deg, #B5C99A 40%, #718355 100%);
-  box-shadow: 0 0 20px 20px rgba(0,0,0,.1);
-  transition: .25s;
+  height: 300px;
+  cursor: pointer;
+  backface-visibility: visible;
 }
 
-header.profile-card-example-header {
+.front, .back, .page1, .page2, .page3, .page4, .mainpage {
+  transform-style: preserve-3d;
+  position: absolute;
+  width: 310px;
+  height: 410px;
+  top: 0; left: 0;
+  transform-origin: left center;
+  transition: transform .5s ease-in-out, box-shadow .35s ease-in-out;
+  border-radius: 3px;
+}
+
+.front, .back {
+  background: rgb(39, 88, 56);
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+ 
+}
+
+.page1 { 
+  background: #fafafa;
+}
+
+.page2 {
+  background: #fafafa;
+}
+
+.page3 * {
+  transform: scaleX(-1);
+  background: #fafafa;
+  border-right: 1px solid #ccc;
   display: flex;
-  flex-direction: column;
+  align-items: center;
   justify-content: center;
+  text-align: center;
+}
+
+.page4 {
+  background: #fafafa;
+  border-right: 1px solid #ccc;
+  display: flex;
   align-items: center;
-  justify-content: flex-end;
-
-  /* Je kunt selectors nesten! */
-  h1 {
-    margin: 3rem 0 1rem;
-    color: #E9F5DB;
-;
-  }
-
+  justify-content: center;
 }
 
-button.profile-card-example-button {
-  position: absolute;
-  right: 1rem;
-  top: 1rem;
-  width: 2.5rem;
-  height: 2.5rem;
-  padding: .25rem;
-  border: none;
-  border-radius: 50%;
-  background: #B5C99A;
-  transform: scale(.8);
-  transition: .25s;
-}
-button.profile-card-example-button:focus {
-  outline: none;
-  background: #606F49;
-}
-button.profile-card-example-button svg {
-  position: absolute;
-  top: calc(1.25rem - 12px);
-  left: calc(1.25rem - 12px);
-  stroke: #E9F5DB;
-  transition-delay: .25s;
-}
-button.profile-card-example-button:focus svg {
-  stroke: #E9F5DB;
-}
-button.profile-card-example-button svg:nth-of-type(2) {
-  opacity: 0;
-  transition-delay: 0ms;
+.book:hover .front {
+  transform: rotateY(-160deg) scale(1.1);
+  box-shadow: 0 1em 3em 0 rgba(0, 0, 0, .2);
 }
 
-.profile-card-example-img {
-  position: relative;
-  top: 2rem;
-  width: 10em;
-  height: auto;
-  border: 5px solid #CFE1B9;
-  border-radius: 10em;
-  box-shadow: 0 0 2px 2px rgba(0,0,0,.2);
-  transition: .25s .15s;
+.book:hover .page1 {
+  transform: rotateY(-150deg) scale(1.1);
+  box-shadow: 0 1em 3em 0 rgba(0, 0, 0, .2);
 }
 
-.profile-card-example-dl {
-  display: grid;
-  grid-template-columns: 1fr 1fr 1fr;
-  grid-template-areas:
-    "html-dd css-dd js-dd"
-    "html-dt css-dt js-dt"
-    ;
-  justify-items: center;
-  align-items: start;
-  width: 100%;
-  margin-top: -3rem;
-  margin-bottom: 0;
-  padding: 5rem 0 3rem;
-  text-align: center;
-  background: #ffffff;
-
-  dt {
-    margin-top: .25rem;
-    padding-top: .25rem;
-    border-top: 1px solid rgba(0,0,0,0.3);
-    font-weight: bold;
-    &:nth-of-type(1) {
-      grid-area: html-dt;
-    }
-    &:nth-of-type(2) {
-      grid-area: css-dt;
-      transform: translateY(1rem);
-    }
-    &:nth-of-type(3) {
-      grid-area: js-dt;
-    }
-  }
-
-  dd {
-    margin: 0;
-    padding-left: .3rem;
-    transition: .25s .3s;
-    &:nth-of-type(2) {
-      transform: translateY(1rem);
-    }
-  }
+.book:hover .page2 {
+  transform: rotateY(-30deg) scale(1.1);
+  box-shadow: 0 1em 3em 0 rgba(0, 0, 0, .2);
 }
 
-
-.profile-card-example p {
-  margin: 0;
+.book:hover .page3 {
+  transform: rotateY(-140deg) scale(1.1);
+  box-shadow: 0 1em 3em 0 rgba(0, 0, 0, .2);
 }
 
-.profile-card-example > p {
-  width: 100%;
-  margin-top: 0;
-  padding: 3rem 2rem;
-  border-radius: 0 0 1rem 1rem;
-  text-align: center;
-  background: rgba(255,255,255, 0.5);
+.book:hover .page4 {
+  transform: rotateY(-40deg) scale(1.1);
+  box-shadow: 0 1em 3em 0 rgba(0, 0, 0, .2);
 }
 
-/* Deze styles zijn van toepassing als je op de knop klikt */
-body.is-expanded {
-  font-size: 1.15em;
-}
-
-body.is-expanded .profile-card-example {
-  width: 60vw;
-  max-width: 60vw;
-}
-
-body.is-expanded .profile-card-example-button svg:first-of-type {
-  opacity: 0;
-  transition-delay: 0ms;
-}
-
-body.is-expanded .profile-card-example-button svg:nth-of-type(2) {
-  opacity: 1;
-  transition-delay: .25s;
-}
-
-body.is-expanded .profile-card-example-dl dd {
-  font-size: 1.75em;
-}
-
-body.is-expanded .profile-card-example-img {
-  width: 15em;
+.book:hover .back {
+  transform: rotateY(-20deg) scale(1.1);
 }
